@@ -1,0 +1,20 @@
+import pandas as pd
+
+# загрузите датасет
+df = pd.read_csv('vgsales.csv')  # ваш код здесь
+
+# после того датасет корректно загрузился, можно посмотреть на данные глазами 10 строк например
+df.head(10)
+  
+df_clean = df[[
+    'Name', 'Platform', 'Year', 'Genre', 'Publisher', 'NA_Sales', 'EU_Sales',
+    'JP_Sales', 'Other_Sales', 'Global_Sales'
+]]
+#чтобы не менять оригинальный файл, нужно создать его копию
+df_clean = df_clean.copy()
+
+#вопрос 4: Какая платформа была самой популярной (по количеству выпущенных игр) в 2000 году? А в 2015
+  
+grouped_data = df_clean.groupby(['Year', 'Platform'])['Name'].count()
+top_platform_each_year = grouped_data.groupby('Year').apply(lambda x: x.idxmax()[1])
+top_platform_each_year.iloc[-19:-3]
