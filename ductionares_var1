@@ -14,9 +14,10 @@ df_clean = df[[
 df_clean = df_clean.copy()
 
 #вопрос 4: Какая платформа была самой популярной (по количеству выпущенных игр) в 2000 году? А в 2015
-  
+# Напечатать ответ на 2000 год 
 print(2000)
 print(df[df.Year == 2000].groupby('Platform').size().sort_values(ascending=False)[:1])
 
+# Напечатать ответ на 2015 год 
 print(2015)
 print(df[df.Year == 2015].groupby('Platform').size().sort_values(ascending=False)[:1])
